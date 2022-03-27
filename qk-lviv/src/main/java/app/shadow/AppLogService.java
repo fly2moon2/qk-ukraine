@@ -20,6 +20,7 @@ import app.shadow.model.AppLog;
 @ClientHeaderParam(name = "class-level-param", value = "AppLogService-interface")
 @RegisterClientHeaders
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface AppLogService {
 
   @GET

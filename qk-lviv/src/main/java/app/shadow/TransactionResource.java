@@ -35,6 +35,14 @@ public class TransactionResource {
   public List<AppLog> allAppLogs () {
       return appLogService.allAppLogs();
   }
+
+  //Remember to set consumes json to enable POST by JSON. @Consumes(MediaType.APPLICATION_JSON)
+  @POST
+  @Path("/applogs")
+  public Response createAppLog(AppLog appLog) {
+    appLogService.createAppLog(appLog);
+    return Response.ok().build();
+  }
 /* 
   @ConfigProperty(name = "account.service", defaultValue = "http://localhost:8080")
   String accountServiceUrl;
