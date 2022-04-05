@@ -1,6 +1,7 @@
 package app.log.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,6 +47,20 @@ public class AppLog extends PanacheEntity {
 
     public static AppLog findByTranId(Long tranId){
         return find("tranId",tranId).firstResult();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+    if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AppLog appLog = (AppLog) o;
+        return tranId.equals(appLog.tranId) &&
+        crtdOn.equals(appLog.crtdOn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tranId, crtdOn);
     }
 
 }

@@ -1,6 +1,7 @@
 package app.config.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.json.bind.annotation.JsonbTransient;
@@ -49,5 +50,19 @@ public class PreferenceCode extends PanacheEntity {
     public static PreferenceCode findByCode(String code, ActiveStatus status){
         return status != null ? find("code=?1 and actStatus=?2",code.toUpperCase(),status).firstResult()
         : find("code",code.toUpperCase()).firstResult();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PreferenceCode prefCde = (PreferenceCode) o;
+        return code.equals(prefCde.code) &&
+                dscrp.equals(prefCde.dscrp);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(code,dscrp);
     }
 }

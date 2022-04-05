@@ -41,18 +41,21 @@ public class Locale extends PanacheEntity {
     //@ManyToOne(fetch = FetchType.EAGER)
     @ManyToOne(fetch = FetchType.LAZY)
     public Language lang;
-/*
-@Override
-public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Locale locl = (Locale) o;
-    return code.equals(locl.code);
-}
- 
-@Override
-public int hashCode() {
-    return Objects.hash(code, locale);
-}
-*/
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Locale loc = (Locale) o;
+        return code.equals(loc.code) &&
+            locale.equals(loc.locale) &&
+            lang.equals(loc.lang);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(code,locale);
+    }
+
 }

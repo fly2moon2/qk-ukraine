@@ -1,6 +1,7 @@
 package app.shadow.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class AppLog {
 
@@ -80,4 +81,17 @@ public class AppLog {
         relEntityBId=_relEntityBId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+    if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AppLog appLog = (AppLog) o;
+        return tranId.equals(appLog.tranId) &&
+        crtdOn.equals(appLog.crtdOn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tranId, crtdOn);
+    }
 }

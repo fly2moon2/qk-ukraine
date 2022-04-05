@@ -9,6 +9,7 @@ import javax.persistence.ElementCollection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.HashSet;
@@ -62,5 +63,19 @@ public class Language extends PanacheEntity {
     public void removeLocale(Locale locale) {
         locales.remove(locale);
         locale.lang=null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Language lang = (Language) o;
+      return code.equals(lang.code) &&
+            this.lang.equals(lang.lang);
+    }
+  
+    @Override
+    public int hashCode() {
+      return Objects.hash(code,this.lang);
     }
 }

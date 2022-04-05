@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.json.bind.annotation.JsonbTransient;
@@ -67,5 +68,20 @@ public class Preference extends PanacheEntity {
 
     public static Preference findByCodeScopeObj(PreferenceCode code, PreferenceScope scope, Long forObjId){
         return find("code=?1 and prefScope=?2 and forObjId=?3",code,scope,forObjId).firstResult();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Preference pref = (Preference) o;
+        return code.equals(pref.code) &&
+            prefScope.equals(pref.prefScope) &&
+            forObjId.equals(pref.forObjId);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(code,prefScope,forObjId);
     }
 }

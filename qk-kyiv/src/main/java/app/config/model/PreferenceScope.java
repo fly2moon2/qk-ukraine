@@ -24,5 +24,6 @@ public enum PreferenceScope {
           .filter(item -> item.dscr.equalsIgnoreCase(dscr))
           .findFirst();
     }
+    
   }
   

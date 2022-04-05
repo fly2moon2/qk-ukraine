@@ -1,6 +1,7 @@
 package app.config.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,5 +31,19 @@ public class PreferenceCat extends PanacheEntity {
 
     public static PreferenceCat findByCode(String code){
         return find("code",code.toUpperCase()).firstResult();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+       PreferenceCat prefCat = (PreferenceCat) o;
+       return code.equals(prefCat.code) &&
+            dscrp.equals(prefCat.dscrp);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(code,dscrp);
     }
 }

@@ -2,6 +2,8 @@ package world.core.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,5 +22,20 @@ public class RelationType extends PanacheEntity {
 
     public static Locale findByCode(String code){
         return find("code",code).firstResult();
+    }
+
+
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    RelationType relTyp = (RelationType) o;
+    return code.equals(relTyp.code) &&
+        this.relTyp.equals(relTyp.relTyp);
+    }
+
+@Override
+public int hashCode() {
+    return Objects.hash(code,this.relTyp);
     }
 }
